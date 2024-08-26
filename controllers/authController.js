@@ -50,7 +50,13 @@ module.exports.signup_get = (req, res) => {
 };
 
 module.exports.login_get = (req, res) => {
-    res.render('login');
+    const token = req.cookies.jwt;
+    if(!token){
+        res.render('login');
+    }else{
+        res.redirect('/');
+    }
+    
 };
 
 module.exports.signup_post = async(req, res) => {
